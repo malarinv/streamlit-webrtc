@@ -50,3 +50,46 @@ class VideoReceiver:
             except MediaStreamError:
                 return
             self._frames_queue.put(frame)
+
+
+class AudioReceiver:
+    _frames_queue: queue.Queue
+    _track: Union[MediaStreamTrack, None]
+    _task: Union[asyncio.Task, None]
+
+    def __init__(self, queue_maxsize: int = 1) -> None:
+        self._frames_queue = queue.Queue(maxsize=queue_maxsize)
+        self._track = None
+        self._task = None
+
+    def addTrack(self, track: MediaStreamTrack):
+        if self._track is not None:
+            raise Exception(f"{self} already has a track {self._track}")
+
+        self._track = track
+
+    def hasTrack(self) -> bool:
+        return self._track is not None
+
+    def start(self):
+        if self._task is not None:
+            raise Exception(f"{self} has already a started task {self._task}")
+        self._task = asyncio.ensure_future(self._run_track(self._track))
+
+    def stop(self):
+        if self._task is not None:
+            self._task.cancel()
+            self._task = None
+
+    def get_frame(
+        self, block: bool = True, timeout: Optional[float] = None
+    ) -> av.AudioFrame:
+        return self._frames_queue.get(block=block, timeout=timeout)
+
+    async def _run_track(self, track: MediaStreamTrack):
+        while True:
+            try:
+                frame = await track.recv()
+            except MediaStreamError:
+                return
+            self._frames_queue.put(frame)

@@ -28,6 +28,7 @@ from .webrtc import (
     MediaPlayerFactory,
     MediaRecorderFactory,
     VideoReceiver,
+    AudioReceiver,
     VideoTransformerBase,
     VideoTransformerFactory,
     WebRtcMode,
@@ -105,6 +106,11 @@ class WebRtcStreamerContext:
     def video_receiver(self) -> Optional[VideoReceiver]:
         worker = self._get_worker()
         return worker.video_receiver if worker else None
+
+    @property
+    def audio_receiver(self) -> Optional[AudioReceiver]:
+        worker = self._get_worker()
+        return worker.audio_receiver if worker else None
 
 
 def webrtc_streamer(
