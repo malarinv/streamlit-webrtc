@@ -744,14 +744,6 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "nvidia-pyindex"
-version = "1.0.8"
-description = "A tool that adds the NVIDIA PIP Index to the environment."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "opencv-python"
 version = "4.5.1.48"
 description = "Wrapper package for OpenCV python bindings."
@@ -863,7 +855,7 @@ ssh = ["paramiko"]
 [[package]]
 name = "plume-asr"
 version = "0.2.1"
-description = ""
+description = "Multi model ASR base package"
 category = "main"
 optional = false
 python-versions = "*"
@@ -878,12 +870,13 @@ tqdm = ">=4.49.0,<4.50.0"
 typer = {version = ">=0.3.2,<0.4.0", extras = ["all"]}
 
 [package.extras]
+all = ["rangehttpserver (>=1.2.0,<1.3.0)", "fairseq @ git+https://github.com/pytorch/fairseq.git@94a1b924f3adec25c8c508ac112410d02b400d1e", "scikit_learn (>=0.22.1,<0.23.0)", "nemo_toolkit[asr] @ git+https://github.com/NVIDIA/NeMo.git@09e3ba4dfe333f86d6c5c1048e07210924294be9", "num2words (>=0.5.10,<0.6.0)", "pymongo (>=3.10.1,<3.11.0)", "tabulate (>=0.8.7,<0.9.0)", "python-slugify (>=4.0.0,<4.1.0)", "datasets", "transformers (>=4.5.0,<4.6.0)", "rpyc (>=4.1.4,<4.2.0)", "boto3 (>=1.12.35,<1.13.0)", "librosa (>=0.7.2,<0.8.0)", "google-cloud-texttospeech (>=1.0.1,<1.1.0)", "jiwer (>=2.2.0,<2.3.0)", "matplotlib (>=3.2.1,<3.3.0)", "natural (>=0.2.0,<0.3.0)", "streamlit (>=0.58.0,<0.59.0)", "google-cloud-speech (>=1.3.1,<1.4.0)", "pydub (>=0.24.0,<0.25.0)", "torch (>=1.6.0,<1.7.0)", "stringcase (>=1.2.0,<1.3.0)", "ruamel.yaml (>=0.16.10,<0.17.0)", "torch-stft (>=0.1.4,<0.2.0)", "pandas (>=1.0.3,<1.1.0)", "torchaudio (>=0.6.0,<0.7.0)"]
 data = ["pydub (>=0.24.0,<0.25.0)", "google-cloud-texttospeech (>=1.0.1,<1.1.0)", "scikit_learn (>=0.22.1,<0.23.0)", "pandas (>=1.0.3,<1.1.0)", "boto3 (>=1.12.35,<1.13.0)", "ruamel.yaml (>=0.16.10,<0.17.0)", "pymongo (>=3.10.1,<3.11.0)", "librosa (>=0.7.2,<0.8.0)", "matplotlib (>=3.2.1,<3.3.0)", "pandas (>=1.0.3,<1.1.0)", "tabulate (>=0.8.7,<0.9.0)", "natural (>=0.2.0,<0.3.0)", "num2words (>=0.5.10,<0.6.0)", "python-slugify (>=4.0.0,<4.1.0)", "rpyc (>=4.1.4,<4.2.0)", "datasets"]
-models = ["nemo-toolkit", "fairseq", "transformers (>=4.5.0,<4.6.0)", "torch (>=1.6.0,<1.7.0)"]
 eval = ["jiwer (>=2.2.0,<2.3.0)"]
-validation = ["pymongo (>=3.10.1,<3.11.0)", "matplotlib (>=3.2.1,<3.3.0)", "pydub (>=0.24.0,<0.25.0)", "streamlit (>=0.58.0,<0.59.0)", "natural (>=0.2.0,<0.3.0)", "stringcase (>=1.2.0,<1.3.0)", "google-cloud-speech (>=1.3.1,<1.4.0)"]
-ui = ["rangehttpserver (>=1.2.0,<1.3.0)"]
+models = ["nemo_toolkit[asr] @ git+https://github.com/NVIDIA/NeMo.git@09e3ba4dfe333f86d6c5c1048e07210924294be9", "fairseq @ git+https://github.com/pytorch/fairseq.git@94a1b924f3adec25c8c508ac112410d02b400d1e", "transformers (>=4.5.0,<4.6.0)", "torch (>=1.6.0,<1.7.0)"]
 train = ["torchaudio (>=0.6.0,<0.7.0)", "torch-stft (>=0.1.4,<0.2.0)"]
+ui = ["rangehttpserver (>=1.2.0,<1.3.0)"]
+validation = ["pymongo (>=3.10.1,<3.11.0)", "matplotlib (>=3.2.1,<3.3.0)", "pydub (>=0.24.0,<0.25.0)", "streamlit (>=0.58.0,<0.59.0)", "natural (>=0.2.0,<0.3.0)", "stringcase (>=1.2.0,<1.3.0)", "google-cloud-speech (>=1.3.1,<1.4.0)"]
 
 [package.source]
 type = "directory"
@@ -1442,7 +1435,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "44688ffb2bb70b3621959b675cc408a60b0c0976a4c0ee021da8846dd860bd20"
+content-hash = "232c4156da0e9b0e7554bd884982eb6a9c8b1c660f7cc5fb1e9f5bdc86046a16"
 
 [metadata.files]
 aioice = [
@@ -2019,9 +2012,6 @@ numpy = [
     {file = "numpy-1.20.2-cp39-cp39-win_amd64.whl", hash = "sha256:924dc3f83de20437de95a73516f36e09918e9c9c18d5eac520062c49191025fb"},
     {file = "numpy-1.20.2-pp37-pypy37_pp73-manylinux2010_x86_64.whl", hash = "sha256:97ce8b8ace7d3b9288d88177e66ee75480fb79b9cf745e91ecfe65d91a856042"},
     {file = "numpy-1.20.2.zip", hash = "sha256:878922bf5ad7550aa044aa9301d417e2d3ae50f0f577de92051d739ac6096cee"},
-]
-nvidia-pyindex = [
-    {file = "nvidia-pyindex-1.0.8.tar.gz", hash = "sha256:154db873fcb36c1645be6c99b643ded1e4909e59213cb51b7f5eb104a120dbce"},
 ]
 opencv-python = [
     {file = "opencv-python-4.5.1.48.tar.gz", hash = "sha256:78a6db8467639383caedf1d111da3510a4ee1a0aacf2117821cae2ee8f92ce37"},
