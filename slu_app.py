@@ -48,7 +48,7 @@ def main():
     # )
     # sendonly_page = "WebRTC is sendonly and images are shown via st.image() (sendonly)"
     # loopback_page = "Simple video loopback (sendrecv)"
-    slu_page = "Simple audio slu (sendonly)"
+    slu_page = "Numeric SLU"
     # app_mode = st.sidebar.selectbox(
     #     "Choose the app mode",
     #     [
